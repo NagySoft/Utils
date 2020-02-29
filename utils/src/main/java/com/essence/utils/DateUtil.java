@@ -10,11 +10,12 @@ import java.util.TimeZone;
 public class DateUtil {
     public static String TAG = DateUtil.class.getSimpleName();
 
-    static final String DATE_FORMAT_yyyy_MM_dd_HH_mm_ss = "yyyy-MM-dd HH:mm:ss";
+    static final String DATE_FORMAT_yyyy_MM_dd_HH_mm_ss = "yyyy_MM_dd_HH_mm_ss";
     static final String DATE_FORMAT_MMMM_dd_yyyy_hh_mm_a = "MMMM dd, yyyy hh:mm a";
     static final String DATE_FORMAT_UTC_Z = "yyyy-MM-dd'T'HH:mm:ss'Z'";
     static final String UTC = "UTC";
     private static final String DATE_FORMAT_dd_mm_yyyy = "dd/MM/yyyy";
+    private static final String DATE_FORMAT_dd_mm_yyyy_hh_mm = "yyyy-MM-dd'T'HH:mm:ss";
     private static final String DATE_FORMAT_UTC = "yyyy-MM-dd'T'HH:mm:ss";
 
     public static Date convertUTCStringToDate(String utcDateString) throws Exception {
@@ -57,6 +58,11 @@ public class DateUtil {
 
     public static String getDatetimeDD_MM_YYYY(Date date) {
         final SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_dd_mm_yyyy, Locale.US);
+        return sdf.format(date);
+    }
+
+    public static String getDatetime_yyyy_MM_dd_HH_mm_ss(Date date) {
+        final SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_yyyy_MM_dd_HH_mm_ss, Locale.US);
         return sdf.format(date);
     }
 
@@ -106,5 +112,9 @@ public class DateUtil {
 
     public static String getNowDateDD_MM_YYYY() {
         return getDatetimeDD_MM_YYYY(getNowDate());
+    }
+
+    public static String getDatetime_yyyy_MM_dd_HH_mm_ss() {
+        return getDatetime_yyyy_MM_dd_HH_mm_ss(getNowDate());
     }
 }
