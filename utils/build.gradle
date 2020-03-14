@@ -19,6 +19,18 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            libraryVariants.all { variant ->
+                variant.outputs.all {
+                    def flavor = variant.name
+                    def versionName = defaultConfig.versionName
+                    def formattedDate = new Date().format('yyyy_MM_dd_hh_mm')
+                    outputFileName = "dasautils_${flavor}_${versionName}_${formattedDate}.aar"
+                }
+            }
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
@@ -31,4 +43,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    implementation 'com.github.NagySoft:Utils:development-12b609a48e-1'
 }
