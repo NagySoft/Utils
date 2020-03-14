@@ -19,11 +19,15 @@ public class LanguageUtil {
             languageCode = LANGUAGE_ARABIC;
         else
             languageCode = LANGUAGE_ENGLISH;
+        setLanguage(context, languageCode);
+        return languageCode;
+    }
+
+    public static void setLanguage(Context context, String languageCode) {
         Locale locale = new Locale(languageCode);
         Locale.setDefault(locale);
         Configuration configuration = new Configuration();
         configuration.setLocale(locale);
         context.getResources().updateConfiguration(configuration, context.getResources().getDisplayMetrics());
-        return languageCode;
     }
 }
